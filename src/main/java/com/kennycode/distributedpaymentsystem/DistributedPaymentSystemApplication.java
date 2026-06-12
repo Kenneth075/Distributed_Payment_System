@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DistributedPaymentSystemApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(DistributedPaymentSystemApplication.class, args);
     }
 
