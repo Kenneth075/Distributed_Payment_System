@@ -45,7 +45,6 @@ public class PaymentEvent {
         return event;
     }
 
-    // --- Getters and Setters ---
 
     public Long getId() {
         return id;

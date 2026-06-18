@@ -8,5 +8,5 @@ import java.util.UUID;
 
 public interface PaymentEventRepository extends JpaRepository<PaymentEvent, Long> {
 
-    List<PaymentEvent> findByPaymentIdOrderByOccurAtAsc(UUID paymentId);
+    List<PaymentEvent> findByPaymentIdOrderByOccurredAtAsc(UUID paymentId);
 }

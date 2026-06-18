@@ -7,18 +7,18 @@
 
 CREATE TABLE cards(
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    card_number VARCHAR(16) NOT NULL UNIQUE, --mask e.g "1234 **** **** 3445"
+    card_number VARCHAR(19) NOT NULL UNIQUE, --mask e.g "1234 **** **** 3445"
     holder_name VARCHAR(50) NOT NULL,
     daily_limit NUMERIC(12, 2) NOT NULL DEFAULT 100000.00,
-    is_active BOOLEAN NOT NULL True,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
     created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );
 
 -- seed cards table for demo purpose.
-INSERT INTO cards (id, card_number, holder_name, daily_limit, is_active, created_at) VALUES(
-    'a1b2c3d4-0000-0000-0000-000000000001', '1234-****-****-4534', 'Kenneth Edoho', 100000, TRUE),
-('a1b2c3d7-0000-0000-0000-000000000002', '1634-****-****-8953', 'Kenny Codez', 100000, TRUE),
-('a1b2c3d4-0000-0000-0000-000000000003', '3714-XXXX-XXXX-3333', 'Jones Mile',   5000.00, FALSE);
+INSERT INTO cards (id, card_number, holder_name, daily_limit, is_active) VALUES
+                                                                             ('a1b2c3d4-0000-0000-0000-000000000001', '1234-****-****-4534', 'Kenneth Edoho', 200000, TRUE),
+                                                                             ('a1b2c3d7-0000-0000-0000-000000000002', '1634-****-****-8953', 'Kenny Codez', 100000, TRUE),
+                                                                             ('a1b2c3d9-0000-0000-0000-000000000003', '3714-****-****-3333', 'Jones Mile', 5000.00, FALSE);
 
 -- -------------------------------------------------------
 -- PAYMENTS table
@@ -68,7 +68,7 @@ CREATE TABLE payment_events(
     payment_id UUID NOT NULL REFERENCES payments(id),
     event_type VARCHAR(50) NOT NULL, -- e.g. VALIDATION_PASSED, LEDGER_RESERVED, COMPENSATION_TRIGGERED
     details TEXT,
-    occur_at TIMESTAMPZ NOT NULL DEFAULT NOW()
-)
+    occurred_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
 
 CREATE INDEX idx_payment_events_payment_id ON payment_events(payment_id);

@@ -42,19 +42,18 @@ public class AuthorizeResponse {
 
     public static AuthorizeResponse declined(UUID paymentId, String idempotencyKey, BigDecimal amount, String currency,
                                              String merchantId, String declineReason, OffsetDateTime createdAt) {
-        AuthorizeResponse r = new AuthorizeResponse();
-        r.paymentId = paymentId;
-        r.idempotencyKey = idempotencyKey;
-        r.status = PaymentStatus.DECLINED;
-        r.amount = amount;
-        r.currency = currency;
-        r.merchantId = merchantId;
-        r.declineReason = declineReason;
-        r.createdAt = createdAt;
-        return r;
+        AuthorizeResponse response = new AuthorizeResponse();
+        response.paymentId = paymentId;
+        response.idempotencyKey = idempotencyKey;
+        response.status = PaymentStatus.DECLINED;
+        response.amount = amount;
+        response.currency = currency;
+        response.merchantId = merchantId;
+        response.declineReason = declineReason;
+        response.createdAt = createdAt;
+        return response;
     }
 
-    // --- Getters and Setters ---
 
     public UUID getPaymentId() {
         return paymentId;
